@@ -2,12 +2,9 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DataGridBindingExampleCore.Models;
-using DevExpress.Xpf.Editors;
-using DevExpress.Xpf.Grid;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 
 namespace DataGridBindingExampleCore
 {
@@ -24,6 +21,10 @@ namespace DataGridBindingExampleCore
         ObservableCollection<ProvincesModel> provinces;
         [ObservableProperty]
         ObservableCollection<DistrictsModel> districts;
+        [ObservableProperty]
+        ObservableCollection<CountriesModel> selectedCountry;
+        [ObservableProperty]
+        ObservableCollection<ProvincesModel> selectedProvince;
         [ObservableProperty]
         StudentsModel selectedStudent;
 
@@ -47,13 +48,8 @@ namespace DataGridBindingExampleCore
             this.SelectedStudent = Students[currentIndex];
         }
 
-        //public ICommand UpdateItemsSourceCommand { get; private set; }
-
-
         public MainWindowViewModel()
         {
-            ////UpdateItemsSourceCommand = new RelayCommand<EditorEventArgs>(OnTableViewShownEditor);
-
             LoadDataAsync();
         }
 
@@ -73,30 +69,8 @@ namespace DataGridBindingExampleCore
         }
 
 
-
-        //private void OnTableViewShownEditor(EditorEventArgs e)
-        //{
-        //    if (e.Column.FieldName == "ProvinceID")
-        //    {
-        //        LookUpEditBase editor = e.Editor as LookUpEditBase;
-        //        if (editor == null)
-        //            return;
-        //        TableView view = (TableView)e.Source;
-        //        string countryName = (string)view.Grid.GetCellValue(e.RowHandle, "CountryName");
-        //        editor.ItemsSource = Provinces.Where(province => province.CountryName == countryName).ToList();
-        //    }
-        //    else if (e.Column.FieldName == "DistrictID")
-        //    {
-        //        LookUpEditBase editor = e.Editor as LookUpEditBase;
-        //        if (editor == null)
-        //            return;
-        //        TableView view = (TableView)e.Source;
-        //        int provinceID = (int)view.Grid.GetCellValue(e.RowHandle, "ProvinceID");
-        //        editor.ItemsSource = Districts.Where(district => district.ProvinceID == provinceID).ToList();
-        //    }
-        //}
-
-
     }
 
 }
+
+
