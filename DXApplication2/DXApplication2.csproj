@@ -9,10 +9,16 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Dapper" Version="2.1.28" />
+    <PackageReference Include="DevExpress.Win.WinterJoySkin" Version="1.0.2" />
     <PackageReference Include="DevExpress.Wpf" Version="23.2.3" />
     <PackageReference Include="DevExpress.Wpf.ThemesLW" Version="23.2.3" />
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="MahApps.Metro" Version="3.0.0-alpha0476" />
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0-ci508" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
     <PackageReference Include="Xceed.Products.Wpf.DataGrid.Full" Version="7.1.22553.1044" />
     <PackageReference Include="Xceed.Products.Wpf.Toolkit.Full" Version="4.4.22258.9000" />
   </ItemGroup>

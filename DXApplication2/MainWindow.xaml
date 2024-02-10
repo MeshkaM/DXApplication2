@@ -3,195 +3,66 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-    xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
-    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="clr-namespace:DataGridBindingExampleCore"
     xmlns:conveters="clr-namespace:DataGridBindingExampleCore.Converters"
     x:Class="DXApplication2.MainWindow"
-    Title="MainWindow" Height="800" Width="1000" DataContext="{DynamicResource vm}" Background="Violet">
+    Title="MainWindow"  DataContext="{DynamicResource vm}" >
     <Window.Resources>
         <vm:MainWindowViewModel x:Key="vm" />
         <conveters:ConvProvinceID x:Key="ConvProvinceID" />
         <conveters:ConvDistrictID x:Key="ConvDistrictID" />
-        <conveters:ProvinceFilterConverter x:Key="ProvinceFilterConverter" />
     </Window.Resources>
     <DockPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-            </Grid.RowDefinitions>
-            <dxg:GridControl Width="990" Grid.Row="0"
-                         ItemsSource="{Binding SelectedStudent.PlacesOfInterest}"
-                         Background="LightGray"
-                         >
-                <dxg:GridColumn FieldName="CountryName" IsSmart="True">
-                    <dxg:GridColumn.EditSettings>
-                        <dxe:ComboBoxEditSettings ItemsSource="{Binding Countries}"
+        <dxg:GridControl Width="990" Grid.Row="0"
+                             ItemsSource="{Binding SelectedStudent.PlacesOfInterest}"
+                             CustomColumnDisplayText="GridControl_CustomColumnDisplayText"
+                             >
+            <dxg:GridColumn FieldName="CountryName" IsSmart="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings ItemsSource="{Binding Countries}"
                                               DisplayMember="CountryName" 
                                               ValueMember="CountryName"/>
-                    </dxg:GridColumn.EditSettings>
-                </dxg:GridColumn>
-                <dxg:GridColumn FieldName="ProvinceID" IsSmart="True">
-                    <dxg:GridColumn.CellTemplate>
-                        <DataTemplate>
-                            <dxe:ComboBoxEdit 
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="ProvinceID" IsSmart="True">
+                <dxg:GridColumn.CellTemplate>
+                    <DataTemplate>
+                        <dxe:ComboBoxEdit 
                                         x:Name="PART_Editor"
                                         DisplayMember="ProvinceName"
                                         FilterCriteria="{Binding Row.CountryName, Converter={conveters:ConvProvinceID}}"
                                         ItemsSource="{Binding View.DataContext.Provinces}"
                                         ValueMember="ProvinceID" />
-                            <DataTemplate.Triggers>
-                                <DataTrigger Value="{x:Null}" Binding="{Binding ItemsSource, ElementName=PART_Editor}">
-                                    <Setter TargetName="PART_Editor" Property="FilterCriteria" Value="{x:Null}"/>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </dxg:GridColumn.CellTemplate>
-                </dxg:GridColumn>
-                <dxg:GridColumn FieldName="DistrictID" IsSmart="True">
-                    <dxg:GridColumn.CellTemplate>
-                        <DataTemplate>
-                            <dxe:ComboBoxEdit 
+                        <DataTemplate.Triggers>
+                            <DataTrigger Value="{x:Null}" Binding="{Binding ItemsSource, ElementName=PART_Editor}">
+                                <Setter TargetName="PART_Editor" Property="FilterCriteria" Value="{x:Null}"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </dxg:GridColumn.CellTemplate>
+            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="DistrictID" IsSmart="True">
+                <dxg:GridColumn.CellTemplate>
+                    <DataTemplate>
+                        <dxe:ComboBoxEdit 
                                         x:Name="PART_Editor"
                                         DisplayMember="DistrictName"
                                         FilterCriteria="{Binding Row.ProvinceID, Converter={conveters:ConvDistrictID}}"
                                         ItemsSource="{Binding View.DataContext.Districts}"
                                         ValueMember="DistrictID" />
-                            <DataTemplate.Triggers>
-                                <DataTrigger Value="{x:Null}" Binding="{Binding ItemsSource, ElementName=PART_Editor}">
-                                    <Setter TargetName="PART_Editor" Property="FilterCriteria" Value="{x:Null}"/>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </dxg:GridColumn.CellTemplate>
-                </dxg:GridColumn>
-                <dxg:GridControl.View>
-                    <dxg:TableView AutoWidth="True" ShowGroupPanel="False">
-                    </dxg:TableView>
-                </dxg:GridControl.View>
-            </dxg:GridControl>
-
-            <xcdg:DataGridControl ItemsSource="{Binding SelectedStudent.PlacesOfInterest}" 
-                                  AutoCreateColumns="False"
-                                  Margin="0 50 0 0" Grid.Row="1">
-                <xcdg:DataGridControl.Columns>
-                    <xcdg:Column FieldName="CountryName">
-                        <xcdg:Column.CellEditor>
-                            <xcdg:CellEditor>
-                                <xcdg:CellEditor.EditTemplate>
-                                    <DataTemplate>
-                                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type xcdg:DataGridControl}}, Path=DataContext.Countries}"
-                                      DisplayMemberPath="CountryName" 
-                                      SelectedValuePath="CountryName"
-                                      SelectedValue="{xcdg:CellEditorBinding}"/>
-                                    </DataTemplate>
-                                </xcdg:CellEditor.EditTemplate>
-                            </xcdg:CellEditor>
-                        </xcdg:Column.CellEditor>
-                    </xcdg:Column>
-                    <xcdg:Column FieldName="ProvinceID">
-                        <xcdg:Column.CellEditor>
-                            <xcdg:CellEditor>
-                                <xcdg:CellEditor.EditTemplate>
-                                    <DataTemplate>
-                                        <ComboBox x:Name="PART_Editor"
-                                      DisplayMemberPath="ProvinceName"
-                                      SelectedValuePath="ProvinceID"
-                                      SelectedValue="{xcdg:CellEditorBinding}">
-                                            <ComboBox.ItemsSource>
-                                                <MultiBinding Converter="{StaticResource ProvinceFilterConverter}">
-                                                    <Binding RelativeSource="{RelativeSource AncestorType={x:Type xcdg:DataGridControl}}" Path="DataContext.Provinces"/>
-                                                    <Binding Path="CountryName"/>
-                                                </MultiBinding>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                        
-                                        <!--<DataTemplate.Triggers>
-                                            <DataTrigger Value="{x:Null}" Binding="{Binding ItemsSource, ElementName=PART_Editor}">
-                                                <Setter TargetName="PART_Editor" Property="FilterCriteria" Value="{x:Null}"/>
-                                            </DataTrigger>
-                                        </DataTemplate.Triggers>-->
-                                    </DataTemplate>
-                                </xcdg:CellEditor.EditTemplate>
-                            </xcdg:CellEditor>
-                        </xcdg:Column.CellEditor>
-                    </xcdg:Column>
-                    <xcdg:Column FieldName="DistrictID">
-                        <xcdg:Column.CellEditor>
-                            <xcdg:CellEditor>
-                                <xcdg:CellEditor.EditTemplate>
-                                    <DataTemplate>
-                                        <ComboBox x:Name="PART_Editor"
-                                      DisplayMemberPath="DistrictName"
-                                      ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type xcdg:DataGridControl}}, Path=DataContext.Districts}"
-                                      SelectedValuePath="DistrictID"
-                                      SelectedValue="{xcdg:CellEditorBinding}"/>
-                                        <!--<DataTemplate.Triggers>
-                                            <DataTrigger Value="{x:Null}" Binding="{Binding ItemsSource, ElementName=PART_Editor}">
-                                                <Setter TargetName="PART_Editor" Property="FilterCriteria" Value="{x:Null}"/>
-                                            </DataTrigger>
-                                        </DataTemplate.Triggers>-->
-                                    </DataTemplate>
-                                </xcdg:CellEditor.EditTemplate>
-                            </xcdg:CellEditor>
-                        </xcdg:Column.CellEditor>
-                    </xcdg:Column>
-                </xcdg:DataGridControl.Columns>
-            </xcdg:DataGridControl>
-        </Grid>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Value="{x:Null}" Binding="{Binding ItemsSource, ElementName=PART_Editor}">
+                                <Setter TargetName="PART_Editor" Property="FilterCriteria" Value="{x:Null}"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </dxg:GridColumn.CellTemplate>
+            </dxg:GridColumn>
+            <dxg:GridControl.View>
+                <dxg:TableView AutoWidth="True" ShowGroupPanel="True">
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
     </DockPanel>
 </Window>
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
