@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [CollegeDB]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Database [CollegeDB]    Script Date: 2/10/2024 8:45:25 AM ******/
 CREATE DATABASE [CollegeDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ ALTER DATABASE [CollegeDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP
 GO
 USE [CollegeDB]
 GO
-/****** Object:  Table [dbo].[Countries]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Table [dbo].[Countries]    Script Date: 2/10/2024 8:45:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +97,7 @@ CREATE TABLE [dbo].[Countries](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Districts]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Table [dbo].[Districts]    Script Date: 2/10/2024 8:45:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -112,7 +112,7 @@ CREATE TABLE [dbo].[Districts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlacesOfInterest]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Table [dbo].[PlacesOfInterest]    Script Date: 2/10/2024 8:45:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +129,7 @@ CREATE TABLE [dbo].[PlacesOfInterest](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlacesOfLiving]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Table [dbo].[PlacesOfLiving]    Script Date: 2/10/2024 8:45:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -146,7 +146,7 @@ CREATE TABLE [dbo].[PlacesOfLiving](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Provinces]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Table [dbo].[Provinces]    Script Date: 2/10/2024 8:45:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,7 +161,7 @@ CREATE TABLE [dbo].[Provinces](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Students]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Table [dbo].[Students]    Script Date: 2/10/2024 8:45:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -175,7 +175,7 @@ CREATE TABLE [dbo].[Students](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[StudentsGrades]    Script Date: 2/5/2024 8:19:46 AM ******/
+/****** Object:  Table [dbo].[StudentsGrades]    Script Date: 2/10/2024 8:45:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -189,6 +189,103 @@ CREATE TABLE [dbo].[StudentsGrades](
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+INSERT [dbo].[Countries] ([CountryName]) VALUES (N'Country1')
+INSERT [dbo].[Countries] ([CountryName]) VALUES (N'Country2')
+INSERT [dbo].[Countries] ([CountryName]) VALUES (N'Country3')
+INSERT [dbo].[Countries] ([CountryName]) VALUES (N'Country4')
+INSERT [dbo].[Countries] ([CountryName]) VALUES (N'Country5')
+GO
+SET IDENTITY_INSERT [dbo].[Districts] ON 
+
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (1, 1, N'District1province1')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (1, 2, N'District2province1')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (2, 3, N'District1province2')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (2, 4, N'District2province2')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (3, 5, N'District1province3')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (3, 6, N'District2province3')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (4, 7, N'District1province4')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (4, 8, N'District2province4')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (5, 9, N'District1province5')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (5, 10, N'District2province5')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (6, 11, N'District1province6')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (6, 12, N'District2province6')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (7, 13, N'District1province7')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (7, 14, N'District2province7')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (8, 15, N'District1province8')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (8, 16, N'District2province8')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (9, 17, N'District1province9')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (9, 18, N'District2province9')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (10, 19, N'District1province10')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (10, 20, N'District2province10')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (11, 21, N'District1province11')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (11, 22, N'District2province11')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (12, 23, N'District1province12')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (12, 24, N'District2province12')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (13, 25, N'District1province13')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (13, 26, N'District2province13')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (14, 27, N'District1province14')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (14, 28, N'District2province14')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (15, 29, N'District1province15')
+INSERT [dbo].[Districts] ([ProvinceID], [DistrictID], [DistrictName]) VALUES (15, 30, N'District2province15')
+SET IDENTITY_INSERT [dbo].[Districts] OFF
+GO
+SET IDENTITY_INSERT [dbo].[PlacesOfInterest] ON 
+
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (1, 1, N'Country1', 1, 1)
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (2, 1, N'Country4', 11, 22)
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (3, 2, N'Country5', 14, 27)
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (4, 2, N'Country2', 4, 8)
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (5, 1, N'Country5', 13, 26)
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (6, 1, N'Country3', 7, 13)
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (7, 1, N'Country2', 6, 12)
+INSERT [dbo].[PlacesOfInterest] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (8, 1, N'Country1', 2, 4)
+SET IDENTITY_INSERT [dbo].[PlacesOfInterest] OFF
+GO
+SET IDENTITY_INSERT [dbo].[PlacesOfLiving] ON 
+
+INSERT [dbo].[PlacesOfLiving] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (1, 1, N'Country4', 3, 2)
+INSERT [dbo].[PlacesOfLiving] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (2, 2, N'Country3', 2, 1)
+INSERT [dbo].[PlacesOfLiving] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (3, 3, N'Country2', 1, 2)
+INSERT [dbo].[PlacesOfLiving] ([ID], [StudentID], [CountryName], [ProvinceID], [DistrictID]) VALUES (4, 4, N'Country1', 3, 1)
+SET IDENTITY_INSERT [dbo].[PlacesOfLiving] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Provinces] ON 
+
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country1', 1, N'Province1country1')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country1', 2, N'Province2country1')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country1', 3, N'Province3country1')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country2', 4, N'Province4country2')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country2', 5, N'Province5country2')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country2', 6, N'Province6country2')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country3', 7, N'Province7country3')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country3', 8, N'Province8country3')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country3', 9, N'Province9country3')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country4', 10, N'Province10country4')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country4', 11, N'Province11country4')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country4', 12, N'Province12country4')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country5', 13, N'Province13country5')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country5', 14, N'Province14country5')
+INSERT [dbo].[Provinces] ([CountryName], [ProvinceID], [ProvinceName]) VALUES (N'Country5', 15, N'Province15country5')
+SET IDENTITY_INSERT [dbo].[Provinces] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Students] ON 
+
+INSERT [dbo].[Students] ([StudentID], [StudentName]) VALUES (1, N'Student1')
+INSERT [dbo].[Students] ([StudentID], [StudentName]) VALUES (2, N'Student2')
+INSERT [dbo].[Students] ([StudentID], [StudentName]) VALUES (3, N'Student3')
+INSERT [dbo].[Students] ([StudentID], [StudentName]) VALUES (4, N'Student4')
+INSERT [dbo].[Students] ([StudentID], [StudentName]) VALUES (5, N'Student5')
+SET IDENTITY_INSERT [dbo].[Students] OFF
+GO
+SET IDENTITY_INSERT [dbo].[StudentsGrades] ON 
+
+INSERT [dbo].[StudentsGrades] ([ID], [StudentID], [StudentsGrade]) VALUES (3, 1, N'B+')
+INSERT [dbo].[StudentsGrades] ([ID], [StudentID], [StudentsGrade]) VALUES (4, 2, N'B')
+INSERT [dbo].[StudentsGrades] ([ID], [StudentID], [StudentsGrade]) VALUES (5, 3, N'A-')
+INSERT [dbo].[StudentsGrades] ([ID], [StudentID], [StudentsGrade]) VALUES (6, 4, N'C+')
+INSERT [dbo].[StudentsGrades] ([ID], [StudentID], [StudentsGrade]) VALUES (7, 5, N'C-')
+SET IDENTITY_INSERT [dbo].[StudentsGrades] OFF
 GO
 ALTER TABLE [dbo].[Districts]  WITH CHECK ADD  CONSTRAINT [FK_Districts_Provinces] FOREIGN KEY([ProvinceID])
 REFERENCES [dbo].[Provinces] ([ProvinceID])
